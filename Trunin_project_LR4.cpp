@@ -54,7 +54,12 @@ void CalcRemainder() {
 
 // Функция для нахождения целой части от деления A на (B + C) 
 void CalcIntegerDivision() { 
-
+    if (B + C != 0) {
+        int integerPart = A / (B + C);
+        cout << "Tsela ot deleniya A na (B + C): " << integerPart << endl;
+    } else {
+        cout << "Ot deleniya na (B + C) ne mozhno " << endl;
+    }
 }
 
 // Структура меню 
