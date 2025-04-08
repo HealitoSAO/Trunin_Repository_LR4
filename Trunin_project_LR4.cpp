@@ -44,7 +44,12 @@ function<void()> EnterNumber(int& varLink, string label) {
 
 // Функция для вычисления остатка от деления разности A и B на C 
 void CalcRemainder() { 
-
+    if (C != 0) {
+        int remainder = (A - B) % C;
+        cout << "Ostatok ot deleniya raznosti A i B na C: " << remainder << endl;
+    } else {
+        cout << "Oshibka: Delitel C ne mojet byt' nulem " << endl;
+    }
 }
 
 // Функция для нахождения целой части от деления A на (B + C) 
