@@ -10,7 +10,36 @@ int A, B, C;
 
 // Функция ввода данных 
 function<void()> EnterNumber(int& varLink, string label) { 
-    
+    return [&varLink, label]() {
+        string raw_input;
+        cout << label << ": ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер
+        getline(cin, raw_input);
+        
+        // Цикл для повторного запроса числа, пока не будет введено корректное значение
+        while (true) {
+            bool isValid = true; // Флаг для проверки корректности ввода
+            
+            // Проверка, является ли строка корректным целым числом
+            if (raw_input.empty() || (raw_input[0] != '-' && !isdigit(raw_input[0]))) {
+                isValid = false;
+            } else {
+                for (size_t i = 1; i < raw_input.length(); ++i) {
+                    if (!isdigit(raw_input[i])) {
+                        isValid = false;
+                        break;
+                    }
+                }
+            }
+            if (isValid) {
+                varLink = stoi(raw_input); // Преобразуем строку в целое число
+                break; // Выход из цикла, если ввод корректен
+            } else {
+                cout << "Nekorektniy vvod. " << label << ": ";
+                getline(cin, raw_input); // Запрашиваем ввод снова
+            }
+        }
+    };
 }
 
 // Функция для вычисления остатка от деления разности A и B на C 
